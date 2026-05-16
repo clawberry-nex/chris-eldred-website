@@ -1,0 +1,295 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.yaml';
+import credits from '../data/credits.yaml';
+import press from '../data/press.yaml';
+import discography from '../data/discography.yaml';
+import videos from '../data/videos.yaml';
+import sessions from '../data/sessions.yaml';
+import socials from '../data/socials.yaml';
+
+const featured = videos[0];
+const rest = videos.slice(1);
+
+function pad2(n: number) {
+  return n.toString().padStart(2, '0');
+}
+---
+<Base>
+  <!-- TOP NAV -->
+  <header class="topnav">
+    <div class="inner">
+      <a href="#top" class="wordmark">
+        <span>Chris Eldred</span><span class="dot">·</span><span class="role">Pianist</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <nav id="nav">
+        <a href="#listen">Listen</a>
+        <a href="#credits">Credits</a>
+        <a href="#press">Press</a>
+        <a href="#discography">Discography</a>
+        <a href="#biography">Biography</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="shell" style="width:100%;">
+        <div class="hero-video" aria-hidden="true"></div>
+        <div class="hero-grid">
+          <div class="hero-text">
+            <div class="subtitle">Jazz Pianist · London</div>
+            <h1>
+              <span class="l1">Chris</span>
+              <span class="l2">Eldred</span>
+            </h1>
+            <div class="pull-quote">
+              <p>“{site.heroPullQuote.text}”</p>
+              <cite>{site.heroPullQuote.citation}</cite>
+            </div>
+            <a href="#contact" class="booking-btn">Booking <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHORT BIO -->
+    <section class="block" id="bio">
+      <div class="shell">
+        <div class="bio-grid">
+          <span class="eyebrow">About</span>
+          <div>
+            <p>Chris Eldred is a London-based jazz pianist with over fifteen years of experience in live, broadcast and studio settings. He graduated with first-class honours in jazz piano from Trinity College of Music in 2011 and was one of six recipients of that year’s Yamaha Scholarship Award for Outstanding Jazz Musicians.</p>
+            <p>He holds long-standing chairs with the Louis Dowdeswell Big Band and the Syd Lawrence Orchestra, played the BBC Proms with NYJO in 2012 and the BBC Concert Orchestra’s Disco Prom in 2024, and has been a member of UK touring band <em>Hejira — Celebrating Joni Mitchell</em> since 2022. He leads his own trio at Ronnie Scott’s and sings tenor with the London Vocal Project.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WATCH & LISTEN -->
+    <section class="block" id="listen">
+      <div class="shell">
+        <span class="eyebrow">Watch &amp; Listen</span>
+        <h2 class="section-title">A first listen.</h2>
+        <div class="videos">
+          <div class="v feat">
+            <button
+              type="button"
+              class="video-frame"
+              data-youtube={featured.youtubeId}
+              aria-label={`Play: ${featured.title}`}
+            >
+              <img src={`/photos/${featured.poster}`} alt={featured.alt} loading="lazy" decoding="async" />
+              <div class="play" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22"><path d="M5 3 L19 11 L5 19 Z" /></svg>
+              </div>
+            </button>
+            <div class="caption">
+              <div class="t">{featured.title}</div>
+              <div class="m">{featured.meta}</div>
+            </div>
+          </div>
+          {rest.map((v) => (
+            <div class="v">
+              <button
+                type="button"
+                class="video-frame"
+                data-youtube={v.youtubeId}
+                aria-label={`Play: ${v.title}`}
+              >
+                <img src={`/photos/${v.poster}`} alt={v.alt} loading="lazy" decoding="async" />
+                <div class="play" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 22 22"><path d="M5 3 L19 11 L5 19 Z" /></svg>
+                </div>
+              </button>
+              <div class="caption">
+                <div class="t">{v.title}</div>
+                <div class="m">{v.meta}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="listen-strip">
+          <div>
+            <div class="lbl">On record · Selected sideman dates</div>
+            <div class="ttl">Recent sessions</div>
+            <div class="sub">Big bands, vocalists &amp; small groups</div>
+          </div>
+          <div class="listen-tracks">
+            {sessions.map((s, i) => (
+              <div class="tr">
+                <span class="n">{pad2(i + 1)}</span>
+                <span class="name" set:html={s.name} />
+                <span class="alb">{s.artist}</span>
+                <span class="dur">{s.year}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDITS -->
+    <section class="block" id="credits">
+      <div class="shell">
+        <span class="eyebrow">Selected Credits &amp; Projects</span>
+        <h2 class="section-title">Who he plays with</h2>
+        <div class="credits-grid">
+          {credits.map((group) => (
+            <div class="credit-group">
+              <h3>
+                <span>{group.title}</span>
+                <span class="count">{pad2(group.rows.length)}</span>
+              </h3>
+              <div class="credit-list">
+                {group.rows.map((row) => (
+                  <div class="credit-row">
+                    <div>
+                      <div class="proj" set:html={row.project} />
+                      <div class="ctx" set:html={row.context} />
+                    </div>
+                    <div class="year">{row.year}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESS -->
+    <section class="block" id="press">
+      <div class="shell">
+        <span class="eyebrow">Press</span>
+        <h2 class="section-title">Quotes</h2>
+        <div class="press-grid">
+          {press.map((q) => (
+            <div class="press-quote">
+              <div class="mark">“</div>
+              <blockquote set:html={q.quote} />
+              <div class="press-meta">
+                <span class="source">{q.source}</span>
+                <span class="sep"></span>
+                <span>{q.context}</span>
+                <span class="sep"></span>
+                <span>{q.year}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCOGRAPHY -->
+    <section class="block" id="discography">
+      <div class="shell">
+        <span class="eyebrow">Discography</span>
+        <h2 class="section-title">Selected recordings</h2>
+        <div class="disc-grid">
+          {discography.map((group) => (
+            <div class="disc-group">
+              <h3>{group.title}</h3>
+              <div class="disc-list">
+                {group.rows.map((row) => (
+                  <div class="disc-row">
+                    <span class="yr">{row.year}</span>
+                    <div class="info">
+                      <div class="ttl" set:html={row.name} />
+                      <div class="sub">{row.artist}</div>
+                    </div>
+                    <a href={row.link} class="stream">Listen →</a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FULL BIO -->
+    <section class="block" id="biography">
+      <div class="shell">
+        <div class="fullbio">
+          <div>
+            <span class="eyebrow">Biography</span>
+            <h2 class="section-title" style="margin-bottom:0;">In full</h2>
+          </div>
+          <div class="body">
+            <p>Chris Eldred began his musical life playing piano, clarinet and singing, before specialising in jazz piano at Trinity College of Music, where he graduated with first-class honours in 2011. He was one of six winners of that year’s Yamaha Scholarship Award for Outstanding Jazz Musicians, and held the piano chair with the National Youth Jazz Orchestra throughout those years — cutting his teeth as a pro musician on dates including the 2012 BBC Proms.</p>
+            <p>He has since performed and recorded with big bands such as the Louis Dowdeswell Big Band and the Syd Lawrence Orchestra. He has worked in small groups on the London scene, frequenting Ronnie Scott’s, Pizza Express Dean Street and the 606, and has appeared twice at the BBC Proms — in 2012 with NYJO, and in 2024 with the BBC Concert Orchestra for the televised Disco Prom.</p>
+            <p>Since 2022 he has been a member of UK touring band <em>Hejira — Celebrating Joni Mitchell</em>. He has shared the stage with UK artists including Tunde of Lighthouse Family and Joseph Lawrence (notably supporting Rag’n’Bone Man), and has played the long-running 1930s immersive experience ‘58th Street’ regularly since 2014.</p>
+            <p>Chris has recorded on albums by Noemi Nuti, Callum Au, Louis Dowdeswell, Dave Panichi and Joseph Lawrence, among many others. His musical life also includes leading his own jazz trio at Ronnie Scott’s and elsewhere, and singing tenor with the London Vocal Project since 2015.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="block" id="contact">
+      <div class="shell">
+        <span class="eyebrow">Contact &amp; Booking</span>
+        <h2 class="section-title">Book Chris</h2>
+        <div class="contact-grid">
+          <div class="contact-direct">
+            <a class="email-card" href={`mailto:${site.displayEmail}`}>
+              <div class="lbl">Direct — no agent</div>
+              <div class="addr">{site.displayEmail}</div>
+              <div class="note">For festival, club, session &amp; private dates. Chris answers his own diary.</div>
+            </a>
+            <div class="socials">
+              {socials.map((s) => (
+                <a href={s.href} class="social" target={s.href.startsWith('http') ? '_blank' : undefined} rel={s.href.startsWith('http') ? 'noopener' : undefined}>
+                  <span>{s.label}</span>
+                  <span class="arrow">→</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <form class="form" id="bookingForm" novalidate>
+            <div class="row">
+              <div class="field">
+                <label for="f-name">Your name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required />
+                <div class="err">Please add a name.</div>
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required />
+                <div class="err">Use a valid email.</div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-date">Date (optional)</label>
+              <input id="f-date" name="date" type="date" />
+            </div>
+            <div class="field">
+              <label for="f-msg">Message</label>
+              <textarea
+                id="f-msg"
+                name="message"
+                rows="4"
+                required
+                placeholder="Venue, capacity, format (trio / solo / duo), budget if known."
+              ></textarea>
+              <div class="err">Tell Chris what the date is for.</div>
+            </div>
+            <button class="submit" type="submit">Send enquiry →</button>
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© Chris Eldred {new Date().getFullYear()} · London</div>
+    <div>chriseldred.co.uk</div>
+  </footer>
+</Base>

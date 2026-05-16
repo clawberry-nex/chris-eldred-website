@@ -1,0 +1,21 @@
+{
+  "name": "chris-eldred-website",
+  "type": "module",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.18",
+    "resend": "^4.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-yaml": "^4.1.2",
+    "@vercel/node": "^3.2.24",
+    "typescript": "^5.6.3"
+  }
+}
