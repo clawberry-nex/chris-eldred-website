@@ -14,6 +14,10 @@ const rest = videos.slice(1);
 function pad2(n: number) {
   return n.toString().padStart(2, '0');
 }
+
+function ytThumb(id: string) {
+  return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+}
 ---
 <Base>
   <!-- TOP NAV -->
@@ -82,7 +86,7 @@ function pad2(n: number) {
               data-youtube={featured.youtubeId}
               aria-label={`Play: ${featured.title}`}
             >
-              <img src={`/photos/${featured.poster}`} alt={featured.alt} loading="lazy" decoding="async" />
+              <img src={ytThumb(featured.youtubeId)} alt={featured.title} loading="lazy" decoding="async" />
               <div class="play" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 22 22"><path d="M5 3 L19 11 L5 19 Z" /></svg>
               </div>
@@ -100,7 +104,7 @@ function pad2(n: number) {
                 data-youtube={v.youtubeId}
                 aria-label={`Play: ${v.title}`}
               >
-                <img src={`/photos/${v.poster}`} alt={v.alt} loading="lazy" decoding="async" />
+                <img src={ytThumb(v.youtubeId)} alt={v.title} loading="lazy" decoding="async" />
                 <div class="play" aria-hidden="true">
                   <svg width="22" height="22" viewBox="0 0 22 22"><path d="M5 3 L19 11 L5 19 Z" /></svg>
                 </div>
