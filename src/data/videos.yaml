@@ -1,4 +1,5 @@
-# Featured tile is the first entry; remaining two appear as smaller tiles.
+# Featured tile is the first entry; remaining four appear as smaller tiles
+# in a 2x2 grid to the right of the featured one (on desktop).
 # Thumbnails come from YouTube (i.ytimg.com/vi/{id}/maxresdefault.jpg).
 - youtubeId: MhAs1YpaS1w
   title: "Hejira plays Joni Mitchell’s ‘Hejira’"
@@ -8,6 +9,14 @@
   title: "‘I Will Survive’ · Vula Malinga"
   meta: "BBC Concert Orchestra · Disco Prom 2024"
 
+- youtubeId: 8L4UexGU53k
+  title: "Noemi Nuti — ‘For What I See’"
+  meta: "EFG London Jazz Festival · 2020"
+
 - youtubeId: d4DM_ud-XIA
   title: "The Callum Au Big Band — ‘Somewhere’"
   meta: "Big band · studio"
+
+- youtubeId: IhIdon3zp5o
+  title: "Callum Au — ‘Si vis pacem para Carnyx’"
+  meta: "Big band · composition"
