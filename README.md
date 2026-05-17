@@ -40,10 +40,13 @@ electronic press kit, and listening room in one scrolling page.
 │   ├── pages/index.astro   Single-page template that loops over the YAML
 │   ├── scripts/client.ts   Scroll-spy, mobile nav, lightbox, form submit
 │   └── styles/global.css
-├── ui-design-handoff/   Original Claude-Design HTML reference (not used at
-│                        build, kept for posterity)
 └── TODO.md              Local working list (gitignored)
 ```
+
+The original Claude-Design HTML reference (`ui-design-handoff/`) and the
+design brief (`claude-design-prompt.md`) lived in the repo during initial
+build but are now gitignored — they're kept on the original maintainer's
+machine for posterity. A fresh clone won't have them.
 
 ## Develop
 

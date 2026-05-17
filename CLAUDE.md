@@ -91,12 +91,17 @@ documents this choice.
 All proxy=off (DNS only). Don't enable orange-cloud proxy without
 adjusting Vercel + cert config.
 
-## ui-design-handoff/
+## ui-design-handoff/ (local-only)
 
-The original Claude-Design output. Kept in the repo as reference, not
-used by the build. Its `README.md` is a useful spec; its
-`Chris Eldred.html` is the visual ground truth. If a CSS change needs
-sanity-checking against the original design, open that file.
+The original Claude-Design output (HTML prototype, photos, design brief,
+quotes, bio, CV) was committed during initial build but is now
+gitignored. It still lives on the original maintainer's machine at
+`~/projects/chris-eldred-website/ui-design-handoff/` if you need to
+sanity-check a CSS change against the visual ground truth — but a fresh
+clone won't have it. The same applies to `claude-design-prompt.md`.
+
+If you do see the folder locally, the useful files are `README.md` (a
+detailed spec) and `Chris Eldred.html` (the working prototype).
 
 ## TODO.md
 

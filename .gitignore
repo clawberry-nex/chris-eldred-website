@@ -9,3 +9,5 @@ dist
 .playwright-mcp
 *.local.png
 TODO.md
+ui-design-handoff/
+claude-design-prompt.md
