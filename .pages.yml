@@ -1,0 +1,151 @@
+content:
+  - name: site
+    label: Site settings
+    type: file
+    path: src/data/site.yaml
+    format: yaml
+    fields:
+      - name: title
+        label: Page title
+        type: string
+      - name: description
+        label: Meta description (SEO)
+        type: text
+      - name: heroPullQuote
+        label: Hero pull-quote
+        type: object
+        fields:
+          - name: text
+            label: Quote
+            type: text
+          - name: citation
+            label: Source / citation
+            type: string
+      - name: displayEmail
+        label: Display email (shown on the site)
+        type: string
+
+  - name: credits
+    label: Credits & Projects
+    type: file
+    path: src/data/credits.yaml
+    format: yaml
+    list: true
+    fields:
+      - name: title
+        label: Group heading
+        type: string
+      - name: rows
+        label: Rows in this group
+        type: object
+        list: true
+        fields:
+          - name: project
+            label: Project / name
+            type: string
+          - name: context
+            label: Context (one line)
+            type: text
+            description: "Plain text or inline HTML (e.g. <em>…</em>)."
+          - name: year
+            label: Year / range
+            type: string
+            description: "e.g. 2024, 2015 —, Ongoing, —"
+
+  - name: press
+    label: Press quotes
+    type: file
+    path: src/data/press.yaml
+    format: yaml
+    list: true
+    fields:
+      - name: quote
+        label: Quote
+        type: text
+      - name: source
+        label: Source (publication / venue)
+        type: string
+      - name: context
+        label: Context (review subject / author)
+        type: string
+      - name: year
+        label: Year / location
+        type: string
+
+  - name: discography
+    label: Discography
+    type: file
+    path: src/data/discography.yaml
+    format: yaml
+    list: true
+    fields:
+      - name: title
+        label: Group heading
+        type: string
+      - name: rows
+        label: Recordings in this group
+        type: object
+        list: true
+        fields:
+          - name: year
+            label: Year
+            type: number
+          - name: name
+            label: Album title
+            type: string
+          - name: artist
+            label: Artist / band
+            type: string
+          - name: link
+            label: Stream URL (Spotify / Bandcamp / Apple)
+            type: string
+
+  - name: videos
+    label: Video tiles
+    description: "First entry is the featured (large) tile. Up to 5 total."
+    type: file
+    path: src/data/videos.yaml
+    format: yaml
+    list: true
+    fields:
+      - name: youtubeId
+        label: YouTube ID
+        type: string
+        description: "The 11-character ID from the YouTube URL (after ?v=)"
+      - name: title
+        label: Caption title
+        type: string
+      - name: meta
+        label: Caption subtitle
+        type: string
+
+  - name: sessions
+    label: "Recent sessions panel (sideman albums)"
+    type: file
+    path: src/data/sessions.yaml
+    format: yaml
+    list: true
+    fields:
+      - name: name
+        label: Album title
+        type: string
+      - name: artist
+        label: Artist / band
+        type: string
+      - name: year
+        label: Year
+        type: number
+
+  - name: socials
+    label: Social links
+    type: file
+    path: src/data/socials.yaml
+    format: yaml
+    list: true
+    fields:
+      - name: label
+        label: Link label
+        type: string
+      - name: href
+        label: URL
+        type: string
