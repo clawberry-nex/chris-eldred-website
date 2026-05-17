@@ -12,8 +12,7 @@ electronic press kit, and listening room in one scrolling page.
 - **YAML data** in `src/data/` — content lives here, not in templates.
 - **Vercel** — static hosting + one serverless function for the contact form.
 - **[Resend](https://resend.com/)** — transactional email for booking enquiries.
-- **Cloudflare** — DNS + Email Routing (`hello@chriseldred.co.uk` →
-  `[redacted]`).
+- **Cloudflare** — DNS + Email Routing for `hello@chriseldred.co.uk`.
 
 ## Layout
 
@@ -88,26 +87,28 @@ Vercel is wired up to redeploy on every push to `main`. The contact form
 is gated to its API endpoint at `/api/contact` and routes to a Vercel
 serverless function backed by Resend.
 
-To test the live form end-to-end:
+To test the live form end-to-end (while the auth gate is enabled, pass
+credentials via `-u user:pass`):
 
 ```sh
 curl -s -X POST https://chriseldred.co.uk/api/contact \
-  -u 'preview:badtemp' \
   -H 'Content-Type: application/json' \
   -d '{"name":"Test","email":"you@example.com","message":"Smoke test."}'
 ```
 
 ## Auth gate
 
-While the site is in review, every route is gated by HTTP Basic Auth:
+While the site is in review, every route is gated by HTTP Basic Auth.
+The credentials live in Vercel env vars (`BASIC_AUTH_USER` /
+`BASIC_AUTH_PASS`) — not in this repo. To see or change them:
 
-| Var | Value |
-|---|---|
-| `BASIC_AUTH_USER` | `preview` |
-| `BASIC_AUTH_PASS` | `badtemp` |
+```sh
+vercel env ls
+vercel env add BASIC_AUTH_USER production   # or rm/edit
+```
 
 The gate is implemented in `middleware.ts` and short-circuits to "allow"
-when either env var is missing. To drop the gate:
+when either env var is missing. To drop the gate entirely:
 
 ```sh
 vercel env rm BASIC_AUTH_USER production --yes
@@ -124,7 +125,7 @@ Form submit
   → POST /api/contact (Vercel function)
   → Resend, FROM bookings@chriseldred.co.uk, TO hello@chriseldred.co.uk
   → Cloudflare Email Routing (MX records on chriseldred.co.uk)
-  → forward to [redacted] (verified destination)
+  → forward to Chris's verified destination address
 ```
 
 DNS / DKIM / SPF for both Resend (sending) and CF Email Routing (receiving

@@ -8,7 +8,9 @@ from a fresh code read.
 
 Single-page Astro site for jazz pianist Chris Eldred (booking CV / EPK).
 Live at https://chriseldred.co.uk, currently gated by HTTP Basic Auth
-during pre-launch review (`preview` / `badtemp`).
+during pre-launch review. Credentials live in Vercel env
+(`BASIC_AUTH_USER` / `BASIC_AUTH_PASS`) — not in this repo. Ask the
+project owner if you need them.
 
 ## Where to edit content vs. templates
 
@@ -52,7 +54,7 @@ form POST
   → Vercel function (api/contact.ts)
   → Resend (FROM bookings@chriseldred.co.uk, TO hello@chriseldred.co.uk)
   → CF Email Routing (MX records on chriseldred.co.uk zone)
-  → [redacted] (Chris's verified destination)
+  → Chris's verified destination address
 ```
 
 If the form starts bouncing, check both legs:
