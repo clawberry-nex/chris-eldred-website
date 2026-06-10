@@ -3,31 +3,26 @@
     - year: 2024
       name: The London Sessions
       artist: Dave Panichi
-      link: "#"
-    - year: 2024
-      name: "Live @ The Cockpit"
-      artist: Hejira
-      link: "#"
+      link: https://davepanichi.bandcamp.com/album/the-london-sessions
     - year: 2020
-      name: "Louis & Cal’s On Stage!"
-      artist: "Callum Au & Louis Dowdeswell"
-      link: "#"
+      name: Louis & Cal’s On Stage!
+      artist: Callum Au & Louis Dowdeswell
+      link: https://open.spotify.com/album/78wvRNaLcUe93P19rY7GHp
     - year: 2019
       name: Venus Eye
       artist: Noemi Nuti
-      link: "#"
-
+      link: https://open.spotify.com/album/6g3P1i0Hb6pMLyvk6gmTNa
 - title: Earlier
   rows:
     - year: 2018
       name: High Score
       artist: Louis Dowdeswell Big Band
-      link: "#"
+      link: https://open.spotify.com/album/6Lwd7LQf24EwtGXQNFF0Qu
     - year: 2014
       name: Nice to Meet You
       artist: Noemi Nuti
-      link: "#"
+      link: https://noeminuti.bandcamp.com/album/nice-to-meet-you
     - year: 2013
-      name: "Something’s Coming"
+      name: Something’s Coming
       artist: The Callum Au Big Band
-      link: "#"
+      link: https://open.spotify.com/album/0OltAsyhAqPB22Ih7GKMmx
