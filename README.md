@@ -3,8 +3,8 @@
 A single-page booking site for jazz pianist Chris Eldred. Booking CV,
 electronic press kit, and listening room in one scrolling page.
 
-**Live:** https://chriseldred.co.uk (currently behind HTTP Basic Auth — see
-[Auth gate](#auth-gate) below).
+**Live:** https://chriseldred.co.uk. The production site is currently public;
+an optional HTTP Basic Auth review gate remains available in middleware.
 
 ## Stack
 
@@ -54,9 +54,9 @@ npm install
 npm run dev    # localhost:4321
 ```
 
-The project has a local `.npmrc` with `include=dev`. Required because nex's
-global npm config has `omit=dev` set, which otherwise silently skips
-devDependencies.
+The project has a local `.npmrc` with `include=dev`. Keep it: Nex shells
+descended from PM2 can inherit `NODE_ENV=production`, which otherwise causes
+npm to omit build-time dev dependencies.
 
 ## Editing content
 
@@ -87,8 +87,7 @@ Vercel is wired up to redeploy on every push to `main`. The contact form
 is gated to its API endpoint at `/api/contact` and routes to a Vercel
 serverless function backed by Resend.
 
-To test the live form end-to-end (while the auth gate is enabled, pass
-credentials via `-u user:pass`):
+To test the live form end-to-end:
 
 ```sh
 curl -s -X POST https://chriseldred.co.uk/api/contact \
@@ -98,17 +97,18 @@ curl -s -X POST https://chriseldred.co.uk/api/contact \
 
 ## Auth gate
 
-While the site is in review, every route is gated by HTTP Basic Auth.
-The credentials live in Vercel env vars (`BASIC_AUTH_USER` /
-`BASIC_AUTH_PASS`) — not in this repo. To see or change them:
+`middleware.ts` can gate every route with HTTP Basic Auth. The gate is
+currently disabled because its Vercel env vars are absent. To enable it for a
+review period, add both values and redeploy:
 
 ```sh
-vercel env ls
-vercel env add BASIC_AUTH_USER production   # or rm/edit
+vercel env add BASIC_AUTH_USER production
+vercel env add BASIC_AUTH_PASS production
+vercel --prod --yes
 ```
 
-The gate is implemented in `middleware.ts` and short-circuits to "allow"
-when either env var is missing. To drop the gate entirely:
+The middleware short-circuits to "allow" when either variable is missing. To
+make the site public again:
 
 ```sh
 vercel env rm BASIC_AUTH_USER production --yes
